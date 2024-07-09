@@ -1,0 +1,6 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://yohanchristmith:2024NewGen@mydatabase.po2pjlw.mongodb.net/?retryWrites=true&w=majority&appName=myDatabase
+      database: Product
+
