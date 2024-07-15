@@ -35,7 +35,6 @@ class ProductServiceApplicationTests {
 	@Autowired
 	private ProductRepository productRepository;
 
-
 	@DynamicPropertySource
 	static void setProperties(DynamicPropertyRegistry dynamicPropertyRegistry){
 		dynamicPropertyRegistry.add("spring.data.mongodb.uri", mongoDBContainer::getReplicaSetUrl);
@@ -46,18 +45,17 @@ class ProductServiceApplicationTests {
 		ProductRequest productRequest = getProductRequest();
 		String productRequestString = objectMapper.writeValueAsString(productRequest);
 		mockMvc.perform(MockMvcRequestBuilders.post("/api/products")
-				.contentType(MediaType.APPLICATION_JSON)
-				.content(productRequestString))
-				.andExpect(status().isCreated());
+		.contentType(MediaType.APPLICATION_JSON)
+		.content(productRequestString))
+		.andExpect(status().isCreated());
         Assertions.assertEquals(1, productRepository.findAll().size());
 	}
 
 	private ProductRequest getProductRequest() {
 		return ProductRequest.builder()
-				.productName("iPhone 14 Pro")
-				.productDescription("This is also a smart phone")
-				.productPrice(BigDecimal.valueOf(300000))
-				.build();
+			.productName("iPhone 14 Pro")
+			.productDescription("This is also a smart phone")
+			.productPrice(BigDecimal.valueOf(300000))
+			.build();
 	}
-
 }
