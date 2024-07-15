@@ -2,7 +2,6 @@ package com.codecraftlabs.productservice.controller;
 
 import com.codecraftlabs.productservice.dto.ProductRequest;
 import com.codecraftlabs.productservice.dto.ProductResponse;
-import com.codecraftlabs.productservice.model.Product;
 import com.codecraftlabs.productservice.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
