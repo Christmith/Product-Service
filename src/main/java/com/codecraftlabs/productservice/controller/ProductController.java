@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/products")
 @RequiredArgsConstructor
-public class productController {
+public class ProductController {
 
     private final ProductService productService;
 
@@ -31,14 +31,14 @@ public class productController {
 
     @GetMapping("/{productId}")
     @ResponseStatus(HttpStatus.OK)
-    public Product getProduct(@PathVariable String productId){
+    public ProductResponse getProduct(@PathVariable String productId){
         return productService.findProductById(productId);
     }
 
-    @PutMapping
+    @PutMapping("/{productId}")
     @ResponseStatus(HttpStatus.OK)
-    public Product modifyProduct(@RequestBody Product product){
-        return productService.updateProduct(product);
+    public void updateProduct(@PathVariable String productId, @RequestBody ProductRequest productRequest){
+        productService.updateProduct(productId,productRequest);
     }
 
     @DeleteMapping("/{productId}")
