@@ -7,8 +7,11 @@ import com.codecraftlabs.productservice.model.Product;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @Service
 @RequiredArgsConstructor
@@ -17,7 +20,7 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
-    //Add Product
+    // Add Product
     public void createProduct(ProductRequest productRequest) {
         Product product = Product.builder()
                 .productName(productRequest.getProductName())
@@ -29,15 +32,42 @@ public class ProductService {
         log.info("Product {} is created.", product.getProductId());
     }
 
-    //Get Product by ID
-    public Product findProductById(String productId){
-        return productRepository.findById(productId).get();
-    }
-
-    //Get All Products
-    public List<ProductResponse> findAllProducts(){
+    // Get All Products
+    public List<ProductResponse> findAllProducts() {
         List<Product> products = productRepository.findAll();
         return products.stream().map(this::mapToProductResponse).toList();
+    }
+
+    // Get Product by ID
+    public ProductResponse findProductById(String productId) {
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Product not found"));
+        return mapToProductResponse(product);
+    }
+
+    // Update Product
+    public void updateProduct(String productId, ProductRequest productRequest) {
+        Product existingProduct = productRepository.findById(productId)
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Product not found"));
+
+        Product updatedProduct = Product.builder()
+                .productId(existingProduct.getProductId())
+                .productName(productRequest.getProductName())
+                .productDescription(productRequest.getProductDescription())
+                .productPrice(productRequest.getProductPrice())
+                .build();
+
+        productRepository.save(updatedProduct);
+        log.info("Product {} is updated.", productId);
+    }
+
+    // Delete Product
+    public void deleteProduct(String productId) {
+        if (!productRepository.existsById(productId)) {
+            throw new ResponseStatusException(NOT_FOUND, "Product not found");
+        }
+        productRepository.deleteById(productId);
+        log.info("Product {} is deleted.", productId);
     }
 
     private ProductResponse mapToProductResponse(Product product) {
@@ -47,16 +77,5 @@ public class ProductService {
                 .productDescription(product.getProductDescription())
                 .productPrice(product.getProductPrice())
                 .build();
-    }
-
-    //Update Product
-    public Product updateProduct(Product product){
-        product.setProductId(product.getProductId());
-        return productRepository.save(product);
-    }
-
-    //Delete Product
-    public void deleteProduct(String productId){
-        productRepository.deleteById(productId);
     }
 }
