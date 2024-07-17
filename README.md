@@ -32,4 +32,5 @@ To run this project, you will need:
     Update your `application.properties` or `application.yml` file with the following MongoDB configuration:
    
       ```properties
-      spring.data.mongodb.uri=mongodb://localhost:27017/product_service
+      spring.data.mongodb.uri=mongodb+srv://yohanchristmith:2024NewGen@mydatabase.po2pjlw.mongodb.net/?retryWrites=true&w=majority&appName=myDatabase
+      spring.data.mongodb.database=Product
