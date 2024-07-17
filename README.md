@@ -37,8 +37,7 @@ To run this project, you will need:
    cd product-service
    
  2. **MongoDB Configuration**
-
-   Update your `application.properties` or `application.yml` file with the following MongoDB configuration:
-
-   ```properties
-   spring.data.mongodb.uri=mongodb://localhost:27017/product_service
+    Update your `application.properties` or `application.yml` file with the following MongoDB configuration:
+   
+      ```properties
+      spring.data.mongodb.uri=mongodb://localhost:27017/product_service
