@@ -7,14 +7,6 @@ Product-Service is a microservice application for managing product information. 
 - [Getting Started](#getting-started)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
-- [Usage](#usage)
-- [Running the Tests](#running-the-tests)
-- [Built With](#built-with)
-- [Contributing](#contributing)
-- [Versioning](#versioning)
-- [Authors](#authors)
-- [License](#license)
-- [Acknowledgments](#acknowledgments)
 
 ## Getting Started
 
