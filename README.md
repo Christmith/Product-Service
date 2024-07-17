@@ -26,7 +26,6 @@ To run this project, you will need:
 
 - Java 8 or later
 - Maven 3.6.0 or later
-- A MySQL database
 - A MongoDB database
 
 ### Installation
@@ -39,7 +38,7 @@ To run this project, you will need:
    
  2. **MongoDB Configuration**
 
-Update your `application.properties` or `application.yml` file with the following MongoDB configuration:
+   Update your `application.properties` or `application.yml` file with the following MongoDB configuration:
 
    ```properties
    spring.data.mongodb.uri=mongodb://localhost:27017/product_service
