@@ -37,22 +37,9 @@ To run this project, you will need:
    git clone https://github.com/Christmith/product-service.git
    cd product-service
    
- 2. **Configure the databases:**
-
-     MySQL Configuration:
-    
-     Create a database named product_service and update the application.properties file located in src/main/resources with your MySQL database configuration.
-     Make sure to replace yourusername and yourpassword with your actual database username and password.  
-    
-      ```properties
-        spring.datasource.url=jdbc:mysql://localhost:3306/product_service
-        spring.datasource.username=yourusername
-        spring.datasource.password=yourpassword
-        spring.jpa.hibernate.ddl-auto=update
-  
-MongoDB Configuration
+ 2. **MongoDB Configuration**
 
 Update your `application.properties` or `application.yml` file with the following MongoDB configuration:
 
-```properties
-spring.data.mongodb.uri=mongodb://localhost:27017/product_service
+   ```properties
+   spring.data.mongodb.uri=mongodb://localhost:27017/product_service
