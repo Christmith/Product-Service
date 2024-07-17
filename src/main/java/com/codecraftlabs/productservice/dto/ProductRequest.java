@@ -16,3 +16,4 @@ public class ProductRequest {
     private String productDescription;
     private BigDecimal productPrice;
 }
+
